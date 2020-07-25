@@ -8,10 +8,13 @@ public class CharacterMovement : MonoBehaviour
     int iFrameDash;
 
     float timer;
+    float fChrSwift, fChrJump;
     Vector2 v2ChrVel;
+
+
     bool bIsCollidingLeft, bIsCollidingRight;
     bool bIsTouchingGround;
-    bool bIsDashing;
+    bool bIsDashing, bCanDashAgain;
 
     uint iSpeed = 6;
 
@@ -21,7 +24,10 @@ public class CharacterMovement : MonoBehaviour
         iJumpLeft = 3;
         iFrameDash = 15;
         timer = 0.0f;
+        fChrSwift = 20.0f;
+        fChrJump = 300.0f;
         bIsTouchingGround = true;
+        bCanDashAgain = true;
 
         if(gameObject.GetComponent<CharacterBehaviour>() != null)
             iSpeed = gameObject.GetComponent<CharacterBehaviour>().Speed;
@@ -43,18 +49,18 @@ public class CharacterMovement : MonoBehaviour
         {
             if (bIsCollidingRight && !bIsTouchingGround)
             {
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(v2ChrVel.x, 0.0f);
-                gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-212.13f, 212.13f));
+                gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                gameObject.GetComponent<Rigidbody2D>().AddForce(Mathf.Sqrt(.5f) * fChrJump * (Vector2.up + Vector2.left));
             }
             else if (bIsCollidingLeft && !bIsTouchingGround)
             {
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(v2ChrVel.x, 0.0f);
-                gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(212.13f, 212.13f));
+                gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                gameObject.GetComponent<Rigidbody2D>().AddForce(Mathf.Sqrt(.5f) * fChrJump * (Vector2.up + Vector2.right));
             }
             else
             {
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(v2ChrVel.x, 0.0f);
-                gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 300.0f));
+                gameObject.GetComponent<Rigidbody2D>().velocity = v2ChrVel.x * Vector2.right;
+                gameObject.GetComponent<Rigidbody2D>().AddForce(fChrJump * Vector2.up);
                 iJumpLeft--;
             }
 
@@ -64,7 +70,7 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             if(!(bIsCollidingLeft && !bIsTouchingGround))
-                gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-20.0f, 0.0f));
+                gameObject.GetComponent<Rigidbody2D>().AddForce(fChrSwift * Vector2.left);
             if(v2ChrVel.x < -0.3f * iSpeed && !bIsDashing)
             {
                 gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-0.3f * iSpeed, v2ChrVel.y);
@@ -76,7 +82,7 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             if (!(bIsCollidingRight && !bIsTouchingGround))
-                gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(20.0f, 0.0f));
+                gameObject.GetComponent<Rigidbody2D>().AddForce(fChrSwift * Vector2.right);
             if (v2ChrVel.x > 0.3f * iSpeed && !bIsDashing)
             {
                 gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.3f * iSpeed, v2ChrVel.y);
@@ -86,19 +92,21 @@ public class CharacterMovement : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.S))
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, -300.0f));
+            gameObject.GetComponent<Rigidbody2D>().AddForce(fChrJump * Vector2.down);
 
         if (Input.GetKeyUp(KeyCode.S) && !bIsTouchingGround)
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 300.0f));
+            gameObject.GetComponent<Rigidbody2D>().AddForce(fChrJump * Vector2.up);
 
         
     }
 
     private void Dash()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) && bCanDashAgain)
         {
             bIsDashing = true;
+            bCanDashAgain = false;
+
             int movingLeft = (int)Mathf.Sign(gameObject.GetComponent<Rigidbody2D>().velocity.x);
 
             if (!(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
@@ -107,7 +115,7 @@ public class CharacterMovement : MonoBehaviour
                 gameObject.GetComponent<Rigidbody2D>().Sleep();
             } 
             else
-                gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(movingLeft * 300.0f, 0.0f));
+                gameObject.GetComponent<Rigidbody2D>().AddForce(movingLeft * fChrJump * Vector2.right);
         }
 
         if (bIsDashing)
@@ -117,6 +125,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 iFrameDash = 15;
                 bIsDashing = false;
+                if (bIsTouchingGround) bCanDashAgain = true;
             }
         }
 
@@ -140,6 +149,7 @@ public class CharacterMovement : MonoBehaviour
         if (collision.GetContact(0).point.y == collision.GetContact(1).point.y)
         {
             bIsTouchingGround = true;
+            bCanDashAgain = true;
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
             gameObject.GetComponent<Rigidbody2D>().drag = 0.9f;
         }

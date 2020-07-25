@@ -116,7 +116,7 @@ MonoBehaviour:
   m_MinSize: {x: 708, y: 471}
   m_MaxSize: {x: 18003, y: 14021}
   vertical: 0
-  controlID: 307
+  controlID: 3191
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 231, y: 471}
   m_MaxSize: {x: 10001, y: 14021}
   vertical: 1
-  controlID: 219
+  controlID: 3261
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 308
+  controlID: 3236
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -418,9 +418,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 0a410000
-      m_LastClickedID: 0
-      m_ExpandedIDs: a0e7ffff54e8ffff
+      m_SelectedIDs: b2350000
+      m_LastClickedID: 13746
+      m_ExpandedIDs: 40f8ffff18340000223400002e340000c2350000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -483,11 +483,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes
+  - Assets
   m_LastFoldersGridSize: 16
   m_LastProjectPath: "C:\\Users\\Adri\xE1n\\Documents\\GitHub\\Special-Kode\\Juego
     de tortas aleatorio"
@@ -495,9 +495,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 04410000
-    m_LastClickedID: 16644
-    m_ExpandedIDs: 00000000fc40000000ca9a3b
+    m_SelectedIDs: 82340000
+    m_LastClickedID: 13442
+    m_ExpandedIDs: 00000000823400001e3d0000203d0000223d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -525,7 +525,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000fc40000000ca9a3b
+    m_ExpandedIDs: 000000008234000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -617,9 +617,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -4, y: -1, z: 0}
+    m_Target: {x: 235.4625, y: 131.5, z: 0}
     speed: 2
-    m_Value: {x: -4, y: -1, z: 0}
+    m_Value: {x: 235.4625, y: 131.5, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -669,9 +669,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 3.7498953
+    m_Target: 156.4755
     speed: 2
-    m_Value: 3.7498953
+    m_Value: 156.4755
   m_Ortho:
     m_Target: 1
     speed: 2
