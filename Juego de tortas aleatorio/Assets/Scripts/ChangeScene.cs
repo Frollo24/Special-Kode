@@ -5,8 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    public void ChangeFightScene(string sSceneName)
+
+    string nextScene = "SampleScene";
+
+
+    //public void ChangeFightScene(string sSceneName)
+    //{
+    //    SceneManager.LoadScene(sSceneName, LoadSceneMode.Single);
+    //}
+
+    public void ChangeFightScene()
     {
-        SceneManager.LoadScene(sSceneName, LoadSceneMode.Single);
+        SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+    }
+
+    public void SetNextScene(string snextScene)
+    {
+        nextScene = snextScene;
     }
 }
