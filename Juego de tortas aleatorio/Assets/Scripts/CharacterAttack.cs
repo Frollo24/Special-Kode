@@ -22,6 +22,7 @@ public class CharacterAttack : MonoBehaviour
         if (gameObject.GetComponent<CharacterBehaviour>() != null)
             iAttack = gameObject.GetComponent<CharacterBehaviour>().Attack;
 
+        goHitbox = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -30,6 +31,7 @@ public class CharacterAttack : MonoBehaviour
         SetTypeOfAttack();
         AttackTimer();
         //Debug.Log("I'm attacking right now");
+        /**
         if(goHitbox == null)
         {
             if (cAttackType == 'N')
@@ -43,6 +45,31 @@ public class CharacterAttack : MonoBehaviour
             if (cAttackType == 'R')
                 goHitbox = Instantiate(Hitbox, (Vector2)transform.position + 2 * Vector2.right, Quaternion.identity);
         }
+        //*/
+        if(goHitbox.activeInHierarchy == false)
+        {
+            goHitbox.SetActive(true);
+
+            switch (cAttackType)
+            {
+                case 'N':
+                    goHitbox.transform.position = (Vector2)transform.position + 2 * Vector2.zero;
+                    break;
+                case 'U':
+                    goHitbox.transform.position = (Vector2)transform.position + 2 * Vector2.up;
+                    break;
+                case 'D':
+                    goHitbox.transform.position = (Vector2)transform.position + 2 * Vector2.down;
+                    break;
+                case 'L':
+                    goHitbox.transform.position = (Vector2)transform.position + 2 * Vector2.left;
+                    break;
+                case 'R':
+                    goHitbox.transform.position = (Vector2)transform.position + 2 * Vector2.right;
+                    break;
+            }
+        }
+
             
         if (gameObject.GetComponent<CharacterBehaviour>().GetState() == "LightAttack")
             finishTime = 0.2f;
@@ -64,14 +91,21 @@ public class CharacterAttack : MonoBehaviour
     {
         timer += Time.deltaTime;
     }
+
     public bool HasFinishedAttacking()
     {
         if(timer > finishTime)
         {
-            Destroy(goHitbox);
+            //Destroy(goHitbox);
+            goHitbox.SetActive(false);
             timer = 0.0f;
             return true;
         }
         return false;
+    }
+
+    public float GetFinishTime()
+    {
+        return finishTime;
     }
 }

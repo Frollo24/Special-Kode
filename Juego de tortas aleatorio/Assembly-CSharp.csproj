@@ -68,6 +68,8 @@
     <Compile Include="Assets\Scripts\CharacterBehaviour.cs" />
     <Compile Include="Assets\Scripts\CharacterMovement.cs" />
     <Compile Include="Assets\Scripts\CharacterTaunt.cs" />
+    <Compile Include="Assets\Scripts\CharacterThrow.cs" />
+    <Compile Include="Assets\Scripts\HitboxThrow.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
