@@ -9,7 +9,7 @@ public class CharacterThrow : MonoBehaviour
     SpriteRenderer rend;
     void Start()
     {
-        fDamage = 0;
+        fDamage = 0.0f;
         rend = gameObject.GetComponent<SpriteRenderer>();
     }
 
