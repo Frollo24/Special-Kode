@@ -14,11 +14,13 @@ public class ChangeScene : MonoBehaviour
     //    SceneManager.LoadScene(sSceneName, LoadSceneMode.Single);
     //}
 
-    public void ChangeFightScene()
+    //Loads the next scene (the one defined in setNextScene)
+    public void ChangeScenes()
     {
         SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
     }
 
+    //Makes nextScene be the name of the scene we want to be the next.
     public void SetNextScene(string snextScene)
     {
         nextScene = snextScene;
