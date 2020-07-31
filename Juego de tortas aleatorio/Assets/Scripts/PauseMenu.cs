@@ -6,7 +6,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
 
-    public bool gameIspaused = false;//This alllow me to work with the paused game in other scripts.
+    public bool gameIspaused = false;//This allow me to work with the paused game in other scripts.
 
     public GameObject pauseMenu;
 

@@ -9,14 +9,14 @@ public class CharacterThrow : MonoBehaviour
     SpriteRenderer rend;
     void Start()
     {
-        fDamage = 0.0f;
+        fDamage = 10.0f;
         rend = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(GetDamage());
+        Debug.Log(GetDamage());
         rend.color = new Color(1 - 0.05f * (-130 + fDamage), 1 - 0.05f * (-60 + fDamage), 1 - (0.05f * fDamage), 1);
     }
 
